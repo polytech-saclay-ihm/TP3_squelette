@@ -34,11 +34,4 @@ public interface ControllerInterface {
 	 *                                la liste
 	 */
 	public void removePercentageValueListener(PercentageValueListener percentageValueListener);
-
-	/**
-	 * Prévient le modèle que la valeur actuelle du pourcentage à changé.
-	 * 
-	 * @param value La nouvelle valeur du pourcentage
-	 */
-	public void notifyValueChanged(double value);
 }

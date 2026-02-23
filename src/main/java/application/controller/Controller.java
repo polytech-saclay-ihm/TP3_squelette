@@ -42,12 +42,4 @@ public class Controller implements ControllerInterface {
 		 * le lien entre le modèle et les vues.
 		 */
 	}
-
-	@Override
-	public void notifyValueChanged(double value) {
-		/**
-		 * TODO 4. Complétez la classe Controller pour qu'elle fasse
-		 * le lien entre le modèle et les vues.
-		 */
-	}
 }

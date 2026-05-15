@@ -17,21 +17,27 @@ public class PieChartController {
 
         // Initialisation des gestionnaires d'événements.
 		view.pieChart.addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
-			/**
-			 * TODO 5. La controleur doit mettre à jour le modèle lorsque l'utilisateur interagit avec la vue.
-			 */
+			if (view.inPieChart(event)) {
+				clickedInPieChart = true;
+				/**
+				 * TODO 5. La controleur doit mettre à jour le modèle lorsque l'utilisateur interagit avec la vue.
+				 */
+			}
+			
 		});
 
 		view.pieChart.addEventHandler(MouseEvent.MOUSE_DRAGGED, event -> {
+			if (clickedInPieChart) {
 			/**
 			 * TODO 5. La controleur doit mettre à jour le modèle lorsque l'utilisateur interagit avec la vue.
 			 */
+			}
 		});
 
 		view.pieChart.addEventHandler(MouseEvent.MOUSE_RELEASED, event -> {
-			/**
-			 * TODO 5. La controleur doit mettre à jour le modèle lorsque l'utilisateur interagit avec la vue.
-			 */
+			if (clickedInPieChart) {
+				clickedInPieChart = false;
+			}
 		});
 	}
 }

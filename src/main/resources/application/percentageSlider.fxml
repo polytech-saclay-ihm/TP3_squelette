@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Slider?>
+
+
+<Slider fx:id="slider" majorTickUnit="10.0" minorTickCount="5" showTickLabels="true" showTickMarks="true" snapToTicks="true" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.view.SliderView" />

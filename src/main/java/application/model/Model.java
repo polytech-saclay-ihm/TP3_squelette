@@ -1,32 +1,40 @@
 package application.model;
 
-import application.event.PercentageValueChangedEvent;
 import application.event.PercentageValueListener;
 import java.util.ArrayList;
 
-public class Model implements ModelInterface {
+public class Model {
 	private double percentageValue;
-	private ArrayList<PercentageValueListener> percentageValueListeners;
+	public ArrayList<PercentageValueListener> percentageValueListeners;
 
 	public Model(double initialValue) {
 		percentageValueListeners = new ArrayList<>();
 		setValue(initialValue);
 	}
 
-	public Model() {
-		this(0.0F);
-	}
 
-	@Override
+	/**
+	 * Permet d'obtenir la valeur actuelle du pourcentage.
+	 * 
+	 * @return La valeur actuelle du pourcentage
+	 */
 	public double getValue() {
-		return percentageValue / 100f;
+		return percentageValue;
 	}
 
-	@Override
+	/**
+	 * Permet de modifier la valeur actuelle du pourcentage.
+	 * 
+	 * @param value La nouvelle valeur du pourcentage
+	 */
 	public void setValue(double value) {
 		if (valueIsOK(value)) {
-			percentageValue = Math.round(value * 100);
-			fireValueChanged();
+			percentageValue = value;
+			/**
+			 * TODO 6b.Faites en sorte que les différentes vues reçoivent
+			 * un événement de type PercentageValueChangedEvent si l'état
+			 * interne du modèle est modifié.
+			 */
 		} else {
 			throw (new IllegalArgumentException(
 					"La valeur entrée en paramètre n'est pas un pourcentage compris entre 0 et 1 (value = " + value
@@ -34,29 +42,13 @@ public class Model implements ModelInterface {
 		}
 	}
 
-	@Override
-	public void addPercentageValueListener(PercentageValueListener percentageValueListener) {
-		percentageValueListeners.add(percentageValueListener);
-	}
-
-	@Override
-	public void removePercentageValueListener(PercentageValueListener percentageValueListener) {
-		percentageValueListeners.remove(percentageValueListener);
-	}
-
-	@Override
+	/**
+	 * Teste si une valeur est un pourcentage compris entre 0 et 1.
+	 * 
+	 * @param value La valeur a tester
+	 * @return "true" si la valeur est comprise entre 0 et 1, "false" sinon
+	 */
 	public boolean valueIsOK(double value) {
 		return ((0.0F <= value) && (value <= 1.0F));
-	}
-
-	@Override
-	public void fireValueChanged() {
-		for (PercentageValueListener percentageValueListener : percentageValueListeners) {
-			/**
-			 * TODO 7.Faites en sorte que les différentes vues reçoivent
-			 * un événement de type PercentageValueChangedEvent si l'état
-			 * interne du modèle est modifié.
-			 */
-		}
 	}
 }

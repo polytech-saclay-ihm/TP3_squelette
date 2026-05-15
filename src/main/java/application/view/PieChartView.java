@@ -1,71 +1,43 @@
 package application.view;
 
+import application.model.Model;
+import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.ArcType;
-import application.controller.Controller;
 
-public class PieChartView extends Canvas
-/**
- * TODO 6. Faites en sorte que les différentes vues aient
- * chacune une méthode permettant de la mettre à jour.
- */
-/**
- * TODO 7.Faites en sorte que les différentes vues reçoivent
- * un événement de type PercentageValueChangedEvent si l'état
- * interne du modèle est modifié.
- */
-{
-	@SuppressWarnings("unused")
-	private final Controller controller;
-	private boolean clickedInPieChart;
+public class PieChartView extends BaseView {
+    @FXML
+    public Canvas pieChart;
+
 	private GraphicsContext graphicsContext;
 
-	public PieChartView(Controller controller) {
-		super(100, 100);
-		this.controller = controller;
-		clickedInPieChart = false;
+    @FXML
+    public void initialize() {
+        this.graphicsContext = pieChart.getGraphicsContext2D();
+    }
 
-		graphicsContext = this.getGraphicsContext2D();
-		drawPieChart(0.0);
-
-		this.addEventHandler(MouseEvent.MOUSE_PRESSED, event -> {
-			if (inPieChart(event)) {
-				clickedInPieChart = true;
-				/**
-				 * TODO 5. Implémentez PieChartView pour qu'elle mette
-				 * à jour le modèle si l'utilisateur la manipule
-				 * (attention, tout doit passer par le controlleur).
-				 */
-			}
-		});
-
-		this.addEventHandler(MouseEvent.MOUSE_DRAGGED, event -> {
-			if (clickedInPieChart) {
-				/**
-				 * TODO 5. Implémentez PieChartView pour qu'elle mette
-				 * à jour le modèle si l'utilisateur la manipule
-				 * (attention, tout doit passer par le controlleur).
-				 */
-			}
-		});
-
-		this.addEventHandler(MouseEvent.MOUSE_RELEASED, event -> {
-			if (clickedInPieChart) {
-				clickedInPieChart = false;
-			}
-		});
+	public void update(double value) {
+		/**
+		 * TODO 6a. Faites en sorte que les différentes vues aient
+		 * chacune une méthode permettant de la mettre à jour.
+		 */
 	}
 
-	private void drawPieChart(double value) {
+    /*
+    Etant donné une valeur de pourcentage,dessine le camembert correspondant sur le canvas.
+    
+    *@param value : la valeur du pourcentage à dessiner, entre 0 et 1.
+    */
+	public void drawPieChart(double value) {
 		// On détermine le centre de la figure
-		double centerX = this.getWidth() / 2;
-		double centerY = this.getHeight() / 2;
+		double centerX = pieChart.getWidth() / 2;
+		double centerY = pieChart.getHeight() / 2;
 
 		// On détermine le rayon du cercle
-		double radius = Math.min(getWidth(), getHeight()) / 2;
+		double radius = Math.min(pieChart.getWidth(), pieChart.getHeight()) / 2;
 
 		// On calcule l'angle correspondant au pourcentage
 		double angle = value * 2 * Math.PI;
@@ -79,12 +51,17 @@ public class PieChartView extends Canvas
 				(double) Math.toDegrees(angle), ArcType.ROUND);
 	}
 
-	private boolean inPieChart(MouseEvent event) {
+    /*
+     * Vérifie si un événement de souris se trouve dans le camembert.
+     *
+     * @param event L'événement de souris à vérifier
+     */
+	public boolean inPieChart(MouseEvent event) {
 		double mouseX = event.getX();
 		double mouseY = event.getY();
-		double centerX = this.getWidth() / 2;
-		double centerY = this.getHeight() / 2;
-		double radius = Math.min(getWidth() - 4, getHeight() - 4) / 2;
+		double centerX = pieChart.getWidth() / 2;
+		double centerY = pieChart.getHeight() / 2;
+		double radius = Math.min(pieChart.getWidth() - 4, pieChart.getHeight() - 4) / 2;
 
 		double distanceCenterMouse = Math.sqrt(Math.pow((centerX - mouseX), 2) + Math.pow((centerY - mouseY), 2));
 
@@ -95,9 +72,15 @@ public class PieChartView extends Canvas
 		}
 	}
 
-	private double pointToPercentage(MouseEvent event) {
-		double centerX = this.getWidth() / 2;
-		double centerY = this.getHeight() / 2;
+    /*
+     * Calcule le pourcentage correspondant à la position d'un événement de souris sur le camembert.
+     *
+     * @param event L'événement de souris à convertir
+     * @return La valeur de pourcentage correspondante
+     */
+	public double pointToPercentage(MouseEvent event) {
+		double centerX = pieChart.getWidth() / 2;
+		double centerY = pieChart.getHeight() / 2;
 		double mouseX = event.getX();
 		double mouseY = event.getY();
 

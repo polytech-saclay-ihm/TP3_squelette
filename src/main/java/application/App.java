@@ -1,73 +1,93 @@
 package application;
 
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import application.controller.Controller;
+import application.controller.ConsoleController;
+import application.controller.LabelController;
+import application.controller.PieChartController;
+import application.controller.SliderController;
 import application.model.Model;
 import application.view.ConsoleView;
 import application.view.LabelView;
 import application.view.PieChartView;
 import application.view.SliderView;
 
-public class App extends VBox {
+public class App {
 	Model model;
-
-	Controller controller;
 
 	LabelView labelView;
 	PieChartView pieChartView;
 	SliderView sliderView;
 	ConsoleView consoleView;
 
-	public App() {
-		// On crée le modèle
-		model = new Model(0.0f);
+	LabelController labelController;
+	SliderController sliderController;
+	PieChartController pieChartController;
+	ConsoleController consoleController;
 
-		// On crée le controlleur
-		controller = new Controller(model);
+	Node labelViewRoot;
+	Node sliderViewRoot;
+	Node pieChartViewRoot;
+
+	Parent root;
+
+	public App(Model model) throws Exception {
+		// On crée le modèle
+		this.model = model;
 
 		// On crée les vues
-		/**
-		 * TODO 3. Ajoutez les quatre vues ConsolView, LabelView,
-		 * PieChartView, SliderView à la classe principale (App.java).
-		 */
-		// e.g. labelView = new LabelView();
+		FXMLLoader loaderLabel = new FXMLLoader(getClass().getResource("percentageLabel.fxml"));
+        FXMLLoader loaderSlider = new FXMLLoader(getClass().getResource("percentageSlider.fxml"));
+        FXMLLoader loaderPieChart = new FXMLLoader(getClass().getResource("percentagePiechart.fxml"));
 
-		// On connecte les vues au modèle
-		/**
-		 * TODO 7.Faites en sorte que les différentes vues reçoivent
-		 * un événement de type PercentageValueChangedEvent si l'état
-		 * interne du modèle est modifié.
-		 */
-		// e.g. controller.addPercentageValueListener(labelView);
+		labelViewRoot = loaderLabel.load();
+		sliderViewRoot = loaderSlider.load();
+		pieChartViewRoot = loaderPieChart.load();
 
-		// On initialise l'interface utilisateur
+		/*
+		TODO 3a : Obtenez ou créez les vues à partir des loaders avec leur méthode getController.
+		*/
+
+		/*
+		TODO 3b : Connecter les vues au modèles.
+		*/
+
+        /*
+		TODO 3c : Créez les contrôleurs pour chaque vue et liez les au modèle.
+		*/
+
 		initialiserUI();
-
-		// On rend la fenêtre visible
-		setVisible(true);
 	}
 
 	/**
 	 * Initialise l'interface utilisateur (UI) de l'application.
 	 */
 	private void initialiserUI() {
+		VBox root = new VBox();
+		this.root = root;
+
 		Label label = new Label("Percentage: ");
-		labelView.setDisable(true);
+		labelViewRoot.setDisable(true);
 
 		// On crée un sous-Pane pour le label et sa valeur (labelView)
 		HBox northPanel = new HBox();
-		northPanel.getChildren().addAll(label, labelView);
+		northPanel.getChildren().addAll(label, labelViewRoot);
 
 		// On définit l'espacement entre les différents éléments du Pane
-		this.setSpacing(30);
-		VBox.setMargin(this, new Insets(15, 15, 15, 15));
-		this.setAlignment(Pos.CENTER);
+		root.setSpacing(30);
+		VBox.setMargin(root, new Insets(15, 15, 15, 15));
+		root.setAlignment(Pos.CENTER);
 
 		// On ajoute tous les éléments au Pane
-		this.getChildren().addAll(northPanel, pieChartView, sliderView);
+		root.getChildren().addAll(northPanel, pieChartViewRoot, sliderViewRoot);
+
+		// On rend la fenêtre visible
+		root.setVisible(true);
 	}
 }

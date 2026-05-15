@@ -32,15 +32,14 @@ Cette organisation présente plusieurs intérêts :
 
 2. **Compréhension de l'architecture :** Réalisez un diagramme de cette application, illustrant les liens entre les différentes classes et interfaces en vous aidant de la description ci-dessous :
 
-Le projet est structuré ainsi :
+Quelques indications à propos de la structure du projet :
   - un modèle : *Model.java*.
   - quatre vues
     - Une vue sous forme de texte dans la console (*ConsoleView.java*)
     - Une vue sous forme de texte dans l'interface graphique (*LabelView.java* et *percentageLabel.fxml*)
     - Une vue sous forme de slider (*SliderView.java* et *percentageSlider.fxml*)
     - Une vue sous forme de camembert (*PieChartView.java* et *percentagePieChart.fxml*)
-  - quatre contrôleurs (un par vue)
-  - un contrôleur : *Controller.java*, implémentant une interface *ControllerInterface.java* (situés dans le package *controller*).
+  - quatre contrôleurs *ConsoleController.java*, *LabelController.java*, *PieChartController.java*, *SliderController.java* (un par vue)
 
 **ATTENTION :** A l'exception de celle dans la console, chaque vue est faite d'un fichier fxml et du controleur fxml associé. Le contrôleur JavaFX d'un fichier fxml et le contrôleur dans un pattern MVC portent le même nom mais ne désignent pas la même chose. Le contrôleur JavaFX permet de faire le lien entre un fichier fxml et du code Java, alors que le contrôleur MVC décrit la logique de l'application en réponse à des actions de l'utilisateur qui modifient le modèle. Le contrôleur JavaFX correspond donc plutôt du point de vue du pattern MVC à la vue.
 

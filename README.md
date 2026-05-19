@@ -65,34 +65,3 @@ d. Lorsqu'un modèle est rajouté à la vue, abonnez la aux changements de pourc
 
 
 7. **Affichage correct au lancement de l'application :** A présent, modifiez le pourcentage initial du modèle lorsqu'il est créé dans *Main.java*. Que remarquez-vous en lançant l'application ? Comment corriger ce problème ?
-<!-- 
-## Remarque sur ce TP
-
-- *Combien de vues ? Combien de contrôleurs ? :* TODO
-- *Implémentations alternatives du pattern MVC :*
-- *Quand est-ce que le contrôleur modifie le modèle ou les vues directement ? :* Données du controleur / du modèle. 
-
-Il existe de multiples manières d'implémenter le pattern MVC, et quelques différences conceptuelles peuvent exister entre ces applications, mais l'idée principale reste la même : le modèle contient les données, la vue gère la disposition des éléments et les interactions de base avec ces éléments, et le controleur gère la connexion entre les deux en mettant en place les bons écouteurs d'événements et 
-
-On aurait pu ici :
-- avoir une unique vue ou un unique contrôleur (moins de code, mais plus lié).
-- diriger les événements vers le controleur plutôt que vers les vues, ce qui est pertinent dans le cadre d'événements plus complexes.
-- adopter le [*pattern MVP*](https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93presenter). Plutôt que d'utiliser des événements, lorsque le controlleur met à jour le modèle, il lit ensuite comment le modèle a été modifié pour mettre à jour les vues. Ce pattern fonctionne uniquement si le modèle n'est mis à jour que par le controleur (et pas par des sources externes).
-
-TODO : Rappel de qui contient quoi.
-Les vues se chargent de l'interactivité mais toute logique plus complexe doit être gérée par le contrôleur.
-Par exemple, la vue peut avoir du code qui détermine si l'utilisateur a fait un clic simple ou double, si il est en train de faire un glissé déposé, ..., et un peu de logique plus complexe (par exemple)
-
-TODO : Dire de modifier initialement le modèle et de faire en sorte que la vue se lance bien avec les bons parametres du modele.
-
-TODO : Mentionner que c'est une implémentation, et qu'il peut y en avoir d'autres.
-
-TODO : Ici en javafx, la vue est faite du fxml + controleur de vue, puis on a le controleur, puis le modèle.
-
-TODO : Préciser que dans ce cas simple, le controleur n'est pas très compliqué car la logique du programme ne l'est pas. Mais 
-
-TODO : INITIALEMENT CHOPER LA VALEUR DU MODELE.
-
-TODO : Pour illustrer l'intérêt d'utiliser des événements.
-
-TODO : Poser question sur pourquoi on voit 2 fois messages dans la console. -->
